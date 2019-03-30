@@ -1,0 +1,58 @@
+{% if tasks|length >= 1 %}
+	<table>
+
+		<tr>
+			<th>Tarea</th>
+			<th>Prioridad</th>
+			<th>Horas Presupuestadas</th>
+			<th>Acciones</th>
+		</tr>
+
+		{% for task in tasks %}
+			<tr style="text-align:center">
+				<td class="p-2 text-muted"> {{ task.title }} </td>
+				<td class="p-2 text-muted"> {{ task.priority}} </td>
+				<td class="p-2 text-muted"> {{ task.hours }} </td>
+				<td class="p-2 text-muted tdBotones"> 
+					<a style="background: white; color:#28a745;" href="{{ path('task_detail',{id:task.id}) }}">
+						<i class="fa fa-eye" aria-hidden="true"></i>
+					</a>
+
+					{% if app.user != null and task.user.id == app.user.id %}
+						<a style="background: white; color: #ffbc00;" href="{{ path('task_edit',{id:task.id}) }}">
+							<i class="fa fa-pencil" aria-hidden="true"></i>
+						</a>
+						<a style="background: white; color: red" href="{{ path('task_delete',{id:task.id}) }}">
+							<i class="fa fa-trash-o" aria-hidden="true"></i>
+						</a>
+					{% endif %}
+
+				</td>
+			</tr>
+		{% endfor %}
+
+	</table>
+
+{% else %}
+	<table>
+
+		<tr>
+			<th>Tarea</th>
+			<th>Prioridad</th>
+			<th>Horas Presupuestadas</th>
+			<th>Acciones</th>
+		</tr>
+
+		<tr>
+			<td colspan="5" 
+							style="
+							text-align:center;
+							padding: 55px 100px;
+							font-size: 1rem; 
+							font-weight: lighter;
+							color: gray;
+							line-height: 40px;">No tienes tareas creadas. <br>Dale al boton <span style="color:#28a745">Crear Tarea </span> en la parte superior derecha</td>
+		</tr>
+
+	</table>
+{% endif %}

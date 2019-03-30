@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Todas las tareas{% endblock %}
+
+{% block body %}
+
+	<div class="example-wrapper">
+		<h1 style="width: 100%; display: flex; justify-content: space-between">
+			<span>Todas las tareas</span>
+			<span>
+				<a style="text-decoration:none" href="{{ path('task_creation') }}" class="btn btn-success">Crear Tarea</a>
+			</span>
+		</h1>
+
+		{{ include('includes/task-list.html.twig') }}
+
+	</div>
+{% endblock %}
